@@ -5,7 +5,6 @@ import requests
 
 st.set_page_config(page_title="Movie Recommendation System",layout="wide")
 
-
 def fetch_poster(movie_id):
     url = 'https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US'.format(movie_id)
     response = requests.get(url)
@@ -13,7 +12,6 @@ def fetch_poster(movie_id):
     poster_path =  data['poster_path']
     full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
     return full_path
-
 
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
@@ -29,9 +27,7 @@ def recommend(movie):
 
         # fetch the movie poster from api
         recommended_movies_posters.append(fetch_poster(movie_id))
-
     return recommended_movies , recommended_movies_posters
-
 
 movies_dict = pickle.load(open('movies_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
